@@ -35,3 +35,4 @@ Credits:
 		background-size polyfill (github.com/louisremi)
 		Respond.js (j.mp/respondjs)
 		Skel (skel.io)
+		bib-publication-list (https://github.com/vkaravir/bib-publication-list)
