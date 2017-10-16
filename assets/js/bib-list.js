@@ -2533,13 +2533,13 @@ var bibtexify = (function($) {
             }
 			
             var itemStr = htmlify(bib2html[type](entryData));
-			
-            itemStr += bib2html.links(entryData);
-            itemStr += bib2html.bibtex(entryData);
 			if(entryData.best_paper_award)
 			{
-				itemStr = '<strong>' + itemStr + ' (Best Paper Award)</strong>';
+				itemStr = itemStr + '<strong> (Best Paper Award)</strong>';
 			}
+            itemStr += bib2html.links(entryData);
+            itemStr += bib2html.bibtex(entryData);
+			
             if (bib.options.tweet && entryData.url) {
                 itemStr += bib2html.tweet(entryData, bib);
             }
