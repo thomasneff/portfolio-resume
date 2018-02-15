@@ -2617,10 +2617,18 @@ var bibtexify = (function($) {
         },
         // helper functions for formatting different types of bibtex entries
         inproceedings: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+            if (entryData.pages) {
+                return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
                 entryData.title + ". In <em>" + entryData.booktitle +
                 ", pp. " + entryData.pages +
                 ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
+            }
+            else 
+            {
+              return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+                entryData.title + ". In <em>" + entryData.booktitle +
+                ((entryData.address)?", " + entryData.address:"") + ".<\/em>";
+            }
         },
         article: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
