@@ -2552,7 +2552,18 @@ var bibtexify = (function($) {
             if (!authorData) { return authorsStr ;}
             for (var index = 0; index < authorData.length; index++) {
                 if (index > 0) { authorsStr += ", "; }
-                authorsStr += authorData[index].last;
+				
+				if (authorData[index].last === 'Neff')
+				{
+					authorsStr += '<strong>' + authorData[index].last + '</strong>';
+				}
+				else
+				{
+					authorsStr += authorData[index].last;
+				}
+               
+				
+				
             }
             return htmlify(authorsStr);
         },
@@ -2631,11 +2642,20 @@ var bibtexify = (function($) {
             }
         },
         article: function(entryData) {
-            return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
-                entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
-                ((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
-                "pp. " + entryData.pages + ". " +
-                ((entryData.address)?entryData.address + ".":"") + "<\/em>";
+			if (entryData.pages) {
+				return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+					entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
+					((entryData.number)?"(" + entryData.number + ")":"")+ ", " +
+					"pp. " + entryData.pages + ". " +
+					((entryData.address)?entryData.address + ".":"") + "<\/em>";
+			}
+			else
+			{
+				return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
+					entryData.title + ". <em>" + entryData.journal + ", " + entryData.volume +
+					((entryData.number)?"(" + entryData.number + ")":"")+ ". " +
+					((entryData.address)?entryData.address + ".":"") + "<\/em>";
+			}
         },
         misc: function(entryData) {
             return this.authors2html(entryData.author) + " (" + entryData.year + "). " +
@@ -2850,7 +2870,7 @@ var bibtexify = (function($) {
             types.sort(function(x, y) {
               return bib2html.importance[y] - bib2html.importance[x];
             });
-            str += '<div class="filler" style="height:' + ((pubHeight+2)*(max-sum)) + 'px;"></div>';
+            str += '<div class="filler" style="height:' + ((pubHeight)*(max-sum)) + 'px;"></div>';
             for (var i = 0; i < types.length; i++) {
                 var type = types[i];
                 if (legendTypes.indexOf(type) === -1) {
