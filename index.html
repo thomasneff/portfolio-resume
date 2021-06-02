@@ -35,8 +35,8 @@
 						</header>
 						<p>I am a VR/Graphics/Vision/ML/Game dev with a passion for games, music and anything programming related. 
 							I'm currently a PhD Student at Graz University of Technology, researching modern real-time methods for VR. 
-							Check out our <a href="https://www.tugraz.at/institute/icg/research/team-steinberger/research-projects/sas/" >project page</a> for more details. 
-							In my spare time, I like to develop games and modify existing ones by reverse engineering their code and dynamically patching it during runtime. 
+							Check out our research projects below for more details. 
+							In my spare time, I like to develop games and modify existing ones by reverse engineering their code or dynamically patching it during runtime. 
 							Finally, I enjoy speedrunning (= completing video games as fast as possible) both as a viewer and as a casual runner, and have contributed several tools to the community.
 						</p>
 						<ul class="actions">
@@ -44,6 +44,15 @@
 							<li><a href="https://scholar.google.com/citations?user=bZsqNhwAAAAJ&hl=de" class="button">Google Scholar</a></li>
 						</ul>
 					</section>
+          <section id="two">
+						<h2>Biography</h2>
+						<div class="row">
+            <p>
+            Thomas Neff is a University Assistant and PhD Student at Graz University of Technology, Austria, teaching and researching as a part of the GPU Computing group at the Institute of Computer Graphics and Vision. He has (co-)authored several papers in the domains of real-time texture-space shading (TOG'19, TOG'21), neural rendering and medical image analysis (MICCAI'18), including a best paper award (OAGM'17). His main research interests include texture-space shading and the intersection between computer graphics and deep learning to advance the state of the art of real-time rendering and streaming via novel neural rendering methods.
+            </p>
+            </p>
+            </div>
+          </section>
 <!-- Two -->
 					<section id="two">
 						<h2>Publications</h2>
@@ -148,6 +157,34 @@ address = {New York, NY, USA},
  address = {New York, NY, USA},
  keywords = {object-space shading, shading, streaming, texture atlas, virtual reality},
 } 
+@article{10.1145/3446790,
+author = {Mueller, Joerg H. and Neff, Thomas and Voglreiter, Philip and Steinberger, Markus and Schmalstieg, Dieter},
+title = {Temporally Adaptive Shading Reuse for Real-Time Rendering and Virtual Reality},
+year = {2021},
+issue_date = {May 2021},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {40},
+number = {2},
+issn = {0730-0301},
+url = {https://doi.org/10.1145/3446790},
+doi = {10.1145/3446790},
+abstract = {Temporal coherence has the potential to enable a huge reduction of shading costs in rendering. Existing techniques focus either only on spatial shading reuse or cannot adaptively choose temporal shading frequencies. We find that temporal shading reuse is possible for extended periods of time for a majority of samples, and we show under which circumstances users perceive temporal artifacts. Our analysis implies that we can approximate shading gradients to efficiently determine when and how long shading can be reused. Whereas visibility usually stays temporally coherent from frame to frame for more than 90%, we find that even in heavily animated game scenes with advanced shading, typically more than 50% of shading is also temporally coherent. To exploit this potential, we introduce a temporally adaptive shading framework and apply it to two real-time methods. Its application saves more than 57% of the shader invocations, reducing overall rendering times up to in virtual reality applications without a noticeable loss in visual quality. Overall, our work shows that there is significantly more potential for shading reuse than currently exploited.},
+journal = {ACM Trans. Graph.},
+month = apr,
+articleno = {11},
+numpages = {14},
+keywords = {Shading, temporal shading reuse, temporal coherence, virtual reality, texture-space shading, shading difference}
+}
+@misc{neff2021donerf,
+      title={DONeRF: Towards Real-Time Rendering of Compact Neural Radiance Fields using Depth Oracle Networks}, 
+      author={Neff, Thomas and Stadlbauer, Pascal and Parger, Mathias and Kurz, Andreas and Mueller, Joerg H. and Chaitanya, Chakravarty R. Alla and Kaplanyan, Anton and Steinberger, Markus},
+      year={2021},
+      eprint={2103.03231},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2103.03231},
+}
 </pre>
 						</div>
 						
@@ -155,7 +192,18 @@ address = {New York, NY, USA},
 					
 					<section id="two">
 						<h2>Research Projects</h2>
+            <div class="row">
+            <article class="12u 12u$(xsmall) work-item">
+								<a href="depthoraclenerf.github.io" class="image fit thumb"><img src="images/donerf_teaser.png" alt="" /></a>
+								<h3>DONeRF: Depth Oracle Neural Radiance Fields</h3>
+								<p>By predicting discrete depth values along each ray, we can reduce the required number of samples for neural raymarching by 24-64x without sacrificing quality or compactness.</p>
+						</article>
 						<div class="row">
+            <article class="12u 12u$(xsmall) work-item">
+								<a href="https://dl.acm.org/doi/fullHtml/10.1145/3446790" class="image fit thumb"><img src="images/tas_teaser.png" alt="" /></a>
+								<h3>Temporally Adaptive Shading Reuse (TAS)</h3>
+								<p>Texture-space temporal reuse of full shading information, saving more than 57% of all shader invocations in VR without noticable loss in quality.</p>
+						</article>
 						<article class="6u 12u$(xsmall) work-item">
 								<a href="https://www.tugraz.at/institute/icg/research/team-steinberger/research-projects/sas/" class="image fit thumb"><img src="https://www.tugraz.at/fileadmin/_migrated/pics/teaser_small.png" alt="" /></a>
 								<h3>Shading Atlas Streaming</h3>
