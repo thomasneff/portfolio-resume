@@ -1,0 +1,3 @@
+@article {kurz2022adanerf,
+  TODO: arxiv
+}

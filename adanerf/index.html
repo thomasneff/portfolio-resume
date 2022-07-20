@@ -1,1 +1,431 @@
-test
+
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1280px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		15px 15px 0 0px #fff, /* The fourth layer */
+		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		20px 20px 0 0px #fff, /* The fifth layer */
+		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		25px 25px 0 0px #fff, /* The fifth layer */
+		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1.5px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+<head>
+	<title>AdaNeRF: Adaptive Sampling for Real-time Rendering of Neural Radiance Fields</title>
+	<meta property="og:image" content="./resources/teaser.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+	<meta property="og:title" content="AdaNeRF: Adaptive Sampling for Real-time Rendering of Neural Radiance Fields" />
+	<meta property="og:description" content="Novel view synthesis has recently been revolutionized by learning neural radiance fields directly from sparse observations. However, rendering images with this new paradigm is slow due to the fact that an accurate quadrature of the volume rendering equation requires a large number of samples for each ray. Previous work has mainly focused on speeding up the network evaluations that are associated with each sample point, e.g., via caching of radiance values into explicit spatial
+data structures, but this comes at the expense of model compactness. In this paper, we propose a novel dual-network architecture that takes an orthogonal direction by learning how to best reduce the number of required sample points. To this end, we split our network into a sampling and shading network that are jointly trained. Our training scheme employs fixed sample positions along each ray, and incrementally introduces sparsity throughout training to achieve high quality even at low sample counts. After fine-tuning with the target number of samples, the resulting compact neural representation can be rendered in real-time. Our experiments demonstrate that our approach outperforms concurrent compact neural representations in terms of quality and frame rate and performs on par with highly efficient hybrid representations." />
+
+  
+  <link rel="stylesheet" href="./definitive-image-comparison-slider-master/src/dics.css">
+  <script src="./definitive-image-comparison-slider-master/src/dics.js"></script>
+
+  
+	<script>
+    document.addEventListener('DOMContentLoaded', domReady);
+    
+    function domReady() {
+    
+      var b = document.querySelectorAll('.b-dics');
+      b.forEach(element => 
+        new Dics({
+          container: element,
+          textPosition: 'top'
+        })
+      );
+
+    }
+  
+    
+
+    
+	</script>
+  
+</head>
+
+<body>
+	<br>
+	<center>
+
+		<table align=center width=1280px>
+			<table align=center width=1280px>
+				<tr>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:36px">AdaNeRF: Adaptive Sampling for Real-time Rendering of Neural Radiance Fields</span>
+						</center>
+					</td>
+				</tr>
+        <tr>
+          <td align=center width=300px>
+						<center>
+							<span style="font-size:24px">ECCV 2022</span>
+						</center>
+					</td>
+        </tr>
+			</table>
+		</table>
+		
+		<br>
+		
+		<table align=center width=1280px>
+			<table align=center width=1280px>
+				<tr>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:24px"><a href="https://online.tugraz.at/tug_online/visitenkarte.show_vcard?pPersonenGruppe=3&pPersonenId=D715516087483BD3">Andreas Kurz*</a></span>
+							<br>
+							<span style="font-size:14px">Graz University of Technology</span>
+						</center>
+					</td>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:24px"><a href="https://thomasneff.github.io/">Thomas Neff*</a></span>
+							<br>
+							<span style="font-size:14px">Graz University of Technology</span>
+						</center>
+					</td>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:24px"><a href="">Zhaoyang Lv</a></span>
+							<br>
+							<span style="font-size:14px">Reality Labs Research</span>
+						</center>
+					</td>
+                    <td align=center width=300px>
+						<center>
+							<span style="font-size:24px"><a href="">Michael Zollhöfer</a></span>
+							<br>
+							<span style="font-size:14px">Reality Labs Research</span>
+						</center>
+					</td>
+					<td align=center width=300px>
+						<center>
+							<span style="font-size:24px"><a href="https://www.markussteinberger.net/">Markus Steinberger</a></span>
+							<br>
+							<span style="font-size:14px">Graz University of Technology</span>
+						</center>
+					</td>
+				</tr>
+			</table>
+            <br>
+			<table align=center width=1280px>
+				<tr>
+					<td align=center width=1280px>
+						<center>
+							<span style="font-size:24px">* Equal Contribution</span>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</table>
+	</center>
+
+	<br>
+	<hr>
+	<center>
+		<table>
+		  <tr>
+      <td align=center> <span style="font-size:18pt">
+			  <center>
+				<a href="">[ArXiV (soon)]</a>
+			  </center>
+			</td>
+			<td align=center> <span style="font-size:18pt">
+			  <center>
+				<a href="https://github.com/thomasneff/AdaNeRF">[Code]</a>
+			  </center>
+			</td>
+		  </tr>
+		</table>
+	</center>
+
+	<hr>
+
+	<center>
+		<table align=center width=1280px>
+			<tr>
+				<td width=1280px>
+					<center>
+						<video controls autoplay muted loop>
+							<source src="./resources/videos/adanerf_webpage_teaser.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						  </video>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<hr>
+
+
+
+	<table align=center width=1280px>
+		<center><h1>Abstract & Method</h1></center>
+        
+	<table align=center width=1280px>
+		<tr>
+			<td align=center width=1280px>
+				<center>
+					<td><img class="round" style="width:1280px" src="./resources/approach_v4.svg"/></td>
+				</center>
+			</td>
+		</tr>
+	</table>
+	<br>
+		<tr>
+			<td>
+				Novel view synthesis has recently been revolutionized by learning neural radiance fields directly from sparse observations. However, rendering images with this new paradigm is slow due to the fact that an accurate quadrature of the volume rendering equation requires a large number of samples for each ray. Previous work has mainly focused on speeding up the network evaluations that are associated with each sample point, e.g., via caching of radiance values into explicit spatial
+data structures, but this comes at the expense of model compactness. In this paper, we propose a novel dual-network architecture that takes an orthogonal direction by learning how to best reduce the number of required sample points. To this end, we split our network into a sampling and shading network that are jointly trained. Our training scheme employs fixed sample positions along each ray, and incrementally introduces sparsity throughout training to achieve high quality even at low sample counts. After fine-tuning with the target number of samples, the resulting compact neural representation can be rendered in real-time. Our experiments demonstrate that our approach outperforms concurrent compact neural representations in terms of quality and frame rate and performs on par with highly efficient hybrid representations.
+			</td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+	<table align=center width=1280px>
+		<center><h1>Real-Time Adaptive Sampling via Soft Student-Teacher Distillation </h1></center>
+		<tr>
+			<td>
+				The 4-phase soft student-teacher training scheme of AdaNeRF introduces sparsity into our sampling network, enabling end-to-end training of real-world scenes. The resulting sampling network can be adaptively sampled in real-time to tune the desired speed/quality trade-off.
+			</td>
+		</tr>
+        
+        
+	<table align=center width=1280px>
+		<tr>
+			<td align=center width=1280px>
+				<center>
+					<td><img class="round" style="width:1280px" src="./resources/training_scheme_v2.svg"/></td>
+				</center>
+			</td>
+		</tr>
+	</table>
+	</table>
+    <br>
+	<br>
+  
+  <br>
+	<table align=center width=1280px>
+		<tr>
+			<td align=center width=640px>
+				<center>
+					<td>
+            <div class="b-dics" style="width: 640px">
+              <!-- 44 -->
+              <img src="./resources/main_comparison/pavillon/ours-16_29.png" width=640px  alt="AdaNeRF">
+              <img src="./resources/main_comparison/pavillon/plen.png" width=640px  alt="Plenoxels">
+              <img src="./resources/main_comparison/pavillon/nerf_29.png" width=640px  alt="NeRF">
+            </div>
+					</td>
+				</center>
+			</td>
+			<td align=center width=640px>
+				<center>
+					<td>
+						<div class="b-dics" style="width: 640px">
+              <!-- 39 -->
+              <img src="./resources/main_comparison/classroom/ours-16_0.png" width=640px  alt="AdaNeRF">
+              <img src="./resources/main_comparison/classroom/plen.png" width=640px  alt="Plenoxels">
+              <img src="./resources/main_comparison/classroom/nerf_0.png" width=640px  alt="NeRF">
+            </div>
+						</div>
+					</td>
+				</center>
+			</td>
+        </tr>
+        <tr>
+			<td align=center width=640px>
+				<center>
+					<td>
+						<div class="b-dics" style="width: 640px">
+              <!-- 57 -->
+              <img src="./resources/main_comparison/flower/ours-16_2.png" width=640px  alt="AdaNeRF">
+              <img src="./resources/main_comparison/flower/plen.png" width=640px  alt="Plenoxels">
+              <img src="./resources/main_comparison/flower/nerf_2.png" width=640px  alt="NeRF">
+            </div>
+					</td>
+				</center>
+			</td>
+            <td align=center width=640px>
+				<center>
+					<td>
+						<div class="b-dics" style="width: 640px">
+              <!-- 57 -->
+              <img src="./resources/main_comparison/trex/ours-16_5.png" width=640px  alt="AdaNeRF">
+              <img src="./resources/main_comparison/trex/plen.png" width=640px  alt="Plenoxels">
+              <img src="./resources/main_comparison/trex/nerf_5.png" width=640px  alt="NeRF">
+            </div>
+					</td>
+				</center>
+			</td>
+		</tr>
+	</table>
+  <br>
+  <hr>
+
+<table align=center width=1280px>
+	<center><h1>Video Summary</h1></center>
+	<tr>
+		<td>
+			<video controls style="width: 100%;">
+							<source src="./resources/videos/adanerf.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+            </video>
+		</td>
+	</tr>
+</table>
+
+	<br>
+	<hr>
+	<table align=center width=450px>
+		<center><h1>Paper and Supplementary Material</h1></center>
+		<tr>
+			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
+			<td><span style="font-size:14pt">Andreas Kurz, Thomas Neff, Zhaoyang Lv, Michael Zollhöfer, Markus Steinberger<br>
+				<b>AdaNeRF: Adaptive Sampling for Real-time Rendering of Neural Radiance Fields</b><br>				
+				<span style="font-size:4pt"><a href=""><br></a>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<br>
+  
+	<table align=center width=600px>
+		<tr>
+			<td><span style="font-size:14pt"><center>
+				<a href="./resources/bibtex.txt">[Bibtex]</a>
+			</center></td>
+		</tr>
+	</table>
+
+
+
+	<hr>
+	<br>
+
+	
+
+
+	<table align=center width=900px>
+		<tr>
+			<td width=400px>
+				<left>
+					<center><h1>Acknowledgements</h1></center>
+					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
+				</left>
+			</td>
+		</tr>
+	</table>
+
+<br>
+</body>
+</html>
+
